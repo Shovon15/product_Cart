@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title":"boots",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    },
+    {
+        "id": 2,
+        "title":"shoes",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    },
+    {
+        "id": 3,
+        "title":"egg",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    },
+    {
+        "id": 4,
+        "title":"boots",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    },
+    {
+        "id": 5,
+        "title":"shoes",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    },
+    {
+        "id": 6,
+        "title":"egg",
+        "price":120,
+        "product_img":"https://i.ibb.co/TLzmvYR/pair-trainers.jpg"
+    }
+]
