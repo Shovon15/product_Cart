@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@material-tailwind/react";
 
 const ProductButton = ({ onClick, children, className }) => {

@@ -1,30 +1,23 @@
+/* eslint-disable react/prop-types */
 import React from "react";
-import { Navbar, Collapse, Typography, IconButton, Badge } from "@material-tailwind/react";
+import { Navbar, Collapse, Typography, IconButton } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useSelector } from "react-redux";
 
-function NavList() {
+function NavList({ handleCart }) {
 	const products = useSelector((state) => state.cartItem);
-	// console.log(products.length, ".length");
+
 	return (
 		<ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-			{/* <Typography as="li" variant="small" color="blue-gray" className="p-1 font-medium">
-				<a href="#" className="flex items-center text-white hover:text-orange-700 text-lg">
-					Pages
-				</a>
-			</Typography>
-			<Typography as="li" variant="small" color="blue-gray" className="p-1 font-medium">
-				<a href="#" className="flex items-center text-white hover:text-orange-700 text-lg">
-					Account
-				</a>
-			</Typography>
-			<Typography as="li" variant="small" color="blue-gray" className="p-1 font-medium">
-				<a href="#" className="flex items-center text-white hover:text-orange-700 text-lg">
-					Blocks
-				</a>
-			</Typography> */}
-			<Badge color="red" content={products?.length}>
-				<IconButton>
+			<div className="static">
+				{products?.length > 0 ? (
+					<span className="absolute  top-5 right-7 z-30 bg-red-500 rounded-full px-2 text-white border-4 border-black">
+						{products.length}
+					</span>
+				) : (
+					""
+				)}
+				<IconButton onClick={handleCart}>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						fill="none"
@@ -40,12 +33,12 @@ function NavList() {
 						/>
 					</svg>
 				</IconButton>
-			</Badge>
+			</div>
 		</ul>
 	);
 }
 
-const AppNav = () => {
+const AppNav = ({ handleCart }) => {
 	const [openNav, setOpenNav] = React.useState(false);
 
 	const handleWindowResize = () => window.innerWidth >= 960 && setOpenNav(false);
@@ -68,7 +61,7 @@ const AppNav = () => {
 					<span className="text-white">Site</span>
 				</Typography>
 				<div className="hidden lg:block">
-					<NavList />
+					<NavList handleCart={handleCart} />
 				</div>
 				<IconButton
 					variant="text"
@@ -84,7 +77,7 @@ const AppNav = () => {
 				</IconButton>
 			</div>
 			<Collapse open={openNav}>
-				<NavList />
+				<NavList handleCart={handleCart} />
 			</Collapse>
 		</Navbar>
 	);
