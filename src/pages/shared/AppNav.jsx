@@ -1,21 +1,19 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Navbar, Collapse, Typography, IconButton } from "@material-tailwind/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useSelector } from "react-redux";
 
-function NavList({ handleCart }) {
+import { Navbar, Typography, IconButton } from "@material-tailwind/react";
+import { useSelector } from "react-redux";
+import CartPage from "../cart/CartPage";
+
+function NavList({ handleCart, cartOpen }) {
 	const products = useSelector((state) => state.cartItem);
 
 	return (
 		<ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
 			<div className="static">
-				{products?.length > 0 ? (
+				{products?.length > 0 && (
 					<span className="absolute  top-5 right-7 z-30 bg-red-500 rounded-full px-2 text-white border-4 border-black">
 						{products.length}
 					</span>
-				) : (
-					""
 				)}
 				<IconButton onClick={handleCart}>
 					<svg
@@ -25,6 +23,7 @@ function NavList({ handleCart }) {
 						strokeWidth={1.5}
 						stroke="currentColor"
 						className="w-6 h-6"
+						disabled={products.length > 0 ? false : true}
 					>
 						<path
 							strokeLinecap="round"
@@ -33,52 +32,27 @@ function NavList({ handleCart }) {
 						/>
 					</svg>
 				</IconButton>
+				{/* <CartPage cartOpen={cartOpen} /> */}
 			</div>
 		</ul>
 	);
 }
 
 const AppNav = ({ handleCart }) => {
-	const [openNav, setOpenNav] = React.useState(false);
-
-	const handleWindowResize = () => window.innerWidth >= 960 && setOpenNav(false);
-
-	React.useEffect(() => {
-		window.addEventListener("resize", handleWindowResize);
-
-		return () => {
-			window.removeEventListener("resize", handleWindowResize);
-		};
-	}, []);
 	return (
 		<Navbar
 			style={{ backgroundColor: "#000" }}
-			className="fixed top-0 z-20 mx-auto max-w-[1600px] px-12 py-6  rounded-none border-none "
+			className="sticky top-0 z-50 mx-auto max-w-[1600px] px-12 py-6  rounded-none border-none "
 		>
 			<div className="flex items-center justify-between text-blue-gray-100">
 				<Typography as="a" href="#" variant="h2" className="mr-4 cursor-pointer py-1.5">
 					<span className="text-orange-700">Good</span>
 					<span className="text-white">Site</span>
 				</Typography>
-				<div className="hidden lg:block">
+				<div className="">
 					<NavList handleCart={handleCart} />
 				</div>
-				<IconButton
-					variant="text"
-					className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
-					ripple={false}
-					onClick={() => setOpenNav(!openNav)}
-				>
-					{openNav ? (
-						<XMarkIcon className="h-6 w-6" strokeWidth={2} />
-					) : (
-						<Bars3Icon className="h-6 w-6" strokeWidth={2} />
-					)}
-				</IconButton>
 			</div>
-			<Collapse open={openNav}>
-				<NavList handleCart={handleCart} />
-			</Collapse>
 		</Navbar>
 	);
 };

@@ -11,16 +11,10 @@ const LandingPage = () => {
 	};
 
 	return (
-		<div className="relative">
+		<div className="relative ">
 			<AppNav handleCart={handleCart} />
-			<div className="flex w-full mt-28">
-				<div className="">
-					<ProductPage />
-				</div>
-				<div>
-					<CartPage cartOpen={cartOpen} />
-				</div>
-			</div>
+			<ProductPage />
+			<CartPage cartOpen={cartOpen} />
 		</div>
 	);
 };

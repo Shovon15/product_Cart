@@ -35,7 +35,7 @@ const cartSlice = createSlice({
 				if (existingItem.quantity > 1) {
 					existingItem.quantity -= 1;
 				} else {
-					// If quantity is 1 or less, remove the product from the cart and local storage
+					// // If quantity is 1 or less, remove the product from the cart and local storage
 					// const existingItemIndex = state.findIndex((item) => item.id === itemIdToDecrease.id);
 					// if (existingItemIndex !== -1) {
 					// 	state.splice(existingItemIndex, 1);
