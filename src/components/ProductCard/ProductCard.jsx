@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, decrease } from "../../store/cartSlice";
 
 const ProductCard = ({ item }) => {
-	const { id, title, product_img, price } = item;
+	const { id, title, product_img, description, price } = item;
 
 	const dispatch = useDispatch();
 	const products = useSelector((state) => state.cartItem);
@@ -36,12 +36,17 @@ const ProductCard = ({ item }) => {
 	}
 	return (
 		<Card>
-			<CardHeader floated={false} shadow={false} color="transparent" className="m-0 rounded-none">
-				<img className="rounded-xl" src={product_img} alt="..." />
+			<CardHeader
+				floated={false}
+				shadow={false}
+				color="transparent"
+				className="m-0 rounded-none flex justify-center"
+			>
+				<img className="rounded-xl h-52" src={product_img} alt="..." />
 			</CardHeader>
 			<CardBody className="">
 				<div className="flex justify-between">
-					<Typography variant="h4" color="blue-gray" className="mb-2">
+					<Typography variant="h5" color="blue-gray" className="mb-2">
 						{title}
 					</Typography>
 					<Typography variant="h4" color="green" className="mb-2 ">
@@ -49,7 +54,7 @@ const ProductCard = ({ item }) => {
 					</Typography>
 				</div>
 				<Typography color="blue-gray" className="font-medium" textGradient>
-					CEO / Co-Founder
+					{description}
 				</Typography>
 				<div className="text-center pt-3 ">
 					{isProductAvailable ? (
